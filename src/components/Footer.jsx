@@ -13,12 +13,16 @@ const Footer = ({ footerInfo: { titles, links } }) => {
                {links.map((val, i) => (
                   <ul key={i} className="grid gap-1">
                      {val.map((link, i) => (
-                        <li key={i} className="font-light text-sm md:text-xs">{link.link}</li>
+                        <li key={i} className="font-light text-sm md:text-xs">
+                           {link.link}
+                        </li>
                      ))}
                   </ul>
                ))}
             </div>
-            <span className="text-sm sm:max-w-[280px] block m-auto sm:w-full text-center">Copyright© All Reserved Rights Rowil Moran 2023</span>
+            <span className="text-sm sm:max-w-[280px] block m-auto sm:w-full text-center">
+               Copyright© All Reserved Rights Rowil Moran 2023
+            </span>
          </footer>
       </>
    );
