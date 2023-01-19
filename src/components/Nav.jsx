@@ -4,9 +4,20 @@ import {
    ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setOpenCart } from "../app/CartSlice";
 
 const Nav = () => {
    const [navState, setNavState] = useState(false);
+   const dispatch = useDispatch();
+
+  const  onCartToggle = () => {
+      dispatch(
+         setOpenCart({
+            cartState: true,
+         })
+      );
+   };
 
    const onNavScroll = () => {
       if (window.scrollY > 30) {
@@ -28,7 +39,7 @@ const Nav = () => {
          <div
             className={
                !navState
-                  ? "absolute top-7 right-0 left-0 z-200  flex"
+                  ? "absolute top-7 right-0 left-0 z-[200]  "
                   : "fixed top-0 right-0 left-0 h-[9vh] flex items-center justify-center opacity-100  z-[200] blur-effect-theme "
             }
          >
@@ -53,12 +64,15 @@ const Nav = () => {
                         navState && "filter brightness-0"
                      }`}
                   />
-                  <div className="relative">
-                     <ShoppingBagIcon
-                        className={`icon-style w-6 h-6 ${
-                           navState && "filter brightness-0"
-                        }`}
-                     />
+                  <div className="relative cursor-pointer" onClick={onCartToggle} >
+                     <button type="button" >
+                        <ShoppingBagIcon
+                           className={`icon-style w-6 h-6 ${
+                              navState && "filter brightness-0"
+                           }`}
+                        />
+                     </button>
+
                      <span
                         className={`absolute bg-slate-200 px-1 rounded-xl text-xs right-0 top-4 leading-4  shadow shadow-slate-200 flex justify-center items-center ${
                            navState && "bg-black text-slate-200"
